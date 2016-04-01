@@ -1,6 +1,6 @@
 # logrr-electron-auth
 
-logrr-electron-auth is as library used to validate SAML assertions to conenct users to [Logrr]; it works with:
+logrr-electron-auth is as library used to validate SAML assertions to connect users to [Logrr]; it works with:
 
   - Nodejs, from version 4.2.0
   - Openfin
