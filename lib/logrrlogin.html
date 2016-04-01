@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title>Login with Logrr</title>
+</head>
+<body style="margin: 0px">
+	<webview id="loginview"></webview>
+	<script>
+		var remote = require('remote');
+		var saml = remote.require('logrr-electron-auth').saml;
+		var samlElectron = remote.require('logrr-electron-auth').samlElectron;
+
+		document.addEventListener("DOMContentLoaded", function(event) { 
+			
+			var url = samlElectron.getAuthRedirect();
+
+			// To be removed when call back for writing user token will be moved.
+			var ipc = require('ipc');
+			var app = remote.require('app');
+			var path = remote.require('path');
+			var fs = remote.require('fs');
+			var dataFilePath = path.join(app.getPath('userCache'), 'user.json');
+
+			var webview = document.getElementById('loginview');
+			webview.src = url;
+
+			webview.addEventListener('console-message', function(e) {
+				var msg = e.message;
+				if(msg.indexOf('verify-saml:') >= 0) {
+					var samlResponse = yString = msg.replace(/verify-saml:/g,'');
+					samlElectron.valiteSamlResponse(samlResponse, function(profile) {
+						var win = remote.getCurrentWindow();
+						win.close();
+				  	});
+				}
+				else if (msg.indexOf('error:') >= 0) {
+					console.log('Error: ' + e.message);
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
