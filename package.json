@@ -1,6 +1,6 @@
 {
   "name": "logrr-electron-auth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "licenses": [
     {
       "type": "MIT",
@@ -14,7 +14,7 @@
     "electron",
     "openfin"
   ],
-  "description": "SAML 2.0 authentication strategy for Electron & OpenFin",
+  "description": "SAML 2.0 authentication library for Electron and OpenFin",
   "author": {
     "name": "Benjamin Soulier",
     "email": "benjamin.soulier@logrr.com",
