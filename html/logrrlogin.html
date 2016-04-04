@@ -11,15 +11,12 @@
 
 		document.addEventListener("DOMContentLoaded", function(event) { 
 			
-			var url = samlElectron.getAuthRedirect();
-
-			// To be removed when call back for writing user token will be moved.
 			var ipc = require('ipc');
 			var app = remote.require('app');
 			var path = remote.require('path');
-			var fs = remote.require('fs');
 			var dataFilePath = path.join(app.getPath('userCache'), 'user.json');
 
+			var url = samlElectron.getAuthRedirect();
 			var webview = document.getElementById('loginview');
 			webview.src = url;
 
