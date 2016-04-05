@@ -16,7 +16,9 @@
 			var path = remote.require('path');
 			var dataFilePath = path.join(app.getPath('userCache'), 'user.json');
 
-			var url = samlElectron.getAuthRedirect();
+			// oneliner to get querytring value.
+			var nameID = unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape('nameID').replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+			var url = samlElectron.getAuthRedirect(nameID);
 			var webview = document.getElementById('loginview');
 			webview.src = url;
 
